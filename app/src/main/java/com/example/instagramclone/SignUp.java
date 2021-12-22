@@ -1,8 +1,5 @@
 package com.example.instagramclone;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,8 +8,9 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -47,9 +45,8 @@ public class SignUp extends AppCompatActivity {
         btnLogin = findViewById(R.id.btnLogin);
         btnSignUp = findViewById(R.id.btnSignUp);
 
-//        this is to log out automatically and not save login tokens
         if(ParseUser.getCurrentUser() != null) {
-            ParseUser.getCurrentUser().logOut();
+            transitionToSocialMediaActivity();
         }
 
     }
@@ -74,6 +71,7 @@ public class SignUp extends AppCompatActivity {
                 public void done(ParseException e) {
                     if(e == null) {
                         Toast.makeText(SignUp.this, appUser.getUsername() + " is signed successfully!", Toast.LENGTH_LONG).show();
+                        transitionToSocialMediaActivity();
                     } else {
                         ParseUser.logOut();
                         Toast.makeText(SignUp.this, e.getMessage(), Toast.LENGTH_LONG).show();
@@ -105,6 +103,12 @@ public class SignUp extends AppCompatActivity {
     public void hideBackground(View view) {
         UserInput hideUsrInput = new UserInput(SignUp.this);
         hideUsrInput.onRootLayoutTapped(view);
+    }
+
+    private void transitionToSocialMediaActivity() {
+        Intent intent = new Intent(SignUp.this, SocialMediaActivity.class);
+        startActivity(intent);
+        finish();
     }
 
 }

@@ -1,7 +1,5 @@
 package com.example.instagramclone;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,8 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.parse.LogInCallback;
-import com.parse.ParseException;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.parse.ParseUser;
 
 public class LoginActivity extends AppCompatActivity {
@@ -29,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
         btnLoginLogin = findViewById(R.id.btnLoginActivity);
 
         if(ParseUser.getCurrentUser() != null) {
-            ParseUser.getCurrentUser().logOut();
+            transitionToSocialMediaActivity();
         }
     }
 
@@ -51,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
                 progressDialog.dismiss();
                 if (parseUser != null) {
                     Toast.makeText(LoginActivity.this, "Login successfully!", Toast.LENGTH_LONG).show();
+                    transitionToSocialMediaActivity();
                 } else {
                     ParseUser.logOut();
                     Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
@@ -64,5 +63,12 @@ public class LoginActivity extends AppCompatActivity {
         UserInput hideUsrInput = new UserInput(LoginActivity.this);
         hideUsrInput.onRootLayoutTapped(view);
     }
+
+    private void transitionToSocialMediaActivity() {
+        Intent intent = new Intent(LoginActivity.this, SocialMediaActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
 
 }

@@ -50,7 +50,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSignUpLoginActivity" />
+        app:layout_constraintTop_toBottomOf="@+id/edtLoginPassword" />
 
     <Button
         android:id="@+id/btnSignUpLoginActivity"
@@ -63,7 +63,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtLoginPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/btnLoginActivity" />
 
     <EditText
         android:id="@+id/edtLoginPassword"
